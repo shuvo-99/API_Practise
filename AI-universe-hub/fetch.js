@@ -38,7 +38,9 @@ const displayTools = (tools) => {
             ${tool.published_in}</p>
           </div>
           <div>
-            <button type="button" class="btn btn-info">Details</button>
+          <button onclick="loadToolDetails('${tool.id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#toolDetail">
+            Details
+          </button>
           </div>
         </div>
       </div>
@@ -46,6 +48,13 @@ const displayTools = (tools) => {
     `;
     cardContainer.appendChild(cardDiv);
   });
+};
+
+const loadToolDetails = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data.data);
 };
 
 loadData();
