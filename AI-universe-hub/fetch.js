@@ -16,10 +16,31 @@ const displayTools = (tools) => {
       <img src="${tool.image}" class="card-img-top rounded " alt="...">
       <div class="card-body">
         <h5 class="card-title">Features</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text">
+          <ol class ="ps-3">
+            <li>
+              ${tool.features[0]}
+            </li>
+            <li>
+              ${tool.features[1]}
+            </li>
+            <li>
+              ${tool.features[2]}
+            </li>
+          </ol>
+        </p>
       </div>
       <div class="card-body border-top">
-      <h5 class="card-title">${tool.name}</h5>
+        <div class="d-flex align-items-center justify-content-between">
+          <div >
+            <h5 class="card-title">${tool.name}</h5>
+            <p class="mb-0">
+            ${tool.published_in}</p>
+          </div>
+          <div>
+            <button type="button" class="btn btn-info">Details</button>
+          </div>
+        </div>
       </div>
     </div>
     `;
