@@ -63,29 +63,90 @@ const displayToolsDetails = (toolDetail) => {
   // Modal Right Contianer
   const modalRightContianer = document.getElementById("modal_RightContianer");
   modalRightContianer.innerHTML = "";
-  const modalCardDiv = document.createElement("div");
-  modalCardDiv.innerHTML = `
+  const modalRightCardDiv = document.createElement("div");
+  modalRightCardDiv.innerHTML = `
     <div class="card border-0 px-2 py-2" style="width: 18rem;">
-    <img src="${
-      toolDetail.image_link[0]
-    }" class="card-img-top rounded" alt="...">
-    <div class="card-body">
-      <p class="card-text">${findElem(
-        toolDetail.input_output_examples[Math.floor(Math.random() * 2)]
-      )}</p>
-      
-    </div>
+      <img src="${
+        toolDetail.image_link[0]
+      }" class="card-img-top rounded" alt="...">
+      <div class="card-body">
+        <p class="card-text">${findElem(
+          toolDetail.input_output_examples[Math.floor(Math.random() * 2)]
+        )}</p>
+        
+      </div>
     </div>
   `;
-  modalRightContianer.appendChild(modalCardDiv);
+  modalRightContianer.appendChild(modalRightCardDiv);
 
   // Modal Left Container
+  const modalLeftContianer = document.getElementById("modal_LeftContianer");
+  modalLeftContianer.innerHTML = "";
+  const modalLeftCardDiv = document.createElement("div");
+  modalLeftCardDiv.innerHTML = `
+  <div class="container ">
+    <div class="row g-2">
+      <div class="col-12">
+        <div class="p-3 fw-bold">${toolDetail.description}</div>
+      </div>
+      <div class="col-4  bg-white rounded">
+        <div class="p-2 fw-bold"">
+          <p >${toolDetail.pricing[0].price}</p>
+          <p>${toolDetail.pricing[0].plan}</p>
+        </div>
+      </div>
+      <div class="col-4 px-2 bg-primary rounded">
+        <div class="p-2 fw-bold">
+          <p >${toolDetail.pricing[1].price}</p>
+          <p>${toolDetail.pricing[1].plan}</p>
+        </div>
+      </div>
+      <div class="col-4 bg-danger rounded">
+        <div class="p-2 fw-bold"">
+          <p >${toolDetail.pricing[2].price}</p>
+          <p>${toolDetail.pricing[2].plan}</p>
+        </div>
+      </div>
+      <div class="col-6 text-start">
+        <div class="p-1 fs-6">
+          <h5 >Features</h5>
+          <ul>
+            <li>
+              ${toolDetail.features[1].feature_name}
+            </li>
+            <li>
+              ${toolDetail.features[2].feature_name}
+            </li>
+            <li>
+              ${toolDetail.features[3].feature_name}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-6 text-start">
+        <div class="p-1 fs-6">
+          <h5>Integrations</h5>
+          <ul>
+              ${toolDetail.integrations
+                .map(
+                  (item, i) => `
+                <li>${item}.</li>
+              `
+                )
+                .join("")}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+  modalLeftContianer.appendChild(modalLeftCardDiv);
 };
 
 function findElem(elem) {
   // console.log(elem);
   const str = elem.input + "\n" + elem.output;
-  console.log(str);
+  // console.log(str);
   return str;
 }
 
