@@ -54,7 +54,39 @@ const loadToolDetails = async (id) => {
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data.data);
+  displayToolsDetails(data.data);
 };
+
+const displayToolsDetails = (toolDetail) => {
+  console.log(toolDetail);
+
+  // Modal Right Contianer
+  const modalRightContianer = document.getElementById("modal_RightContianer");
+  modalRightContianer.innerHTML = "";
+  const modalCardDiv = document.createElement("div");
+  modalCardDiv.innerHTML = `
+    <div class="card border-0 px-2 py-2" style="width: 18rem;">
+    <img src="${
+      toolDetail.image_link[0]
+    }" class="card-img-top rounded" alt="...">
+    <div class="card-body">
+      <p class="card-text">${findElem(
+        toolDetail.input_output_examples[Math.floor(Math.random() * 2)]
+      )}</p>
+      
+    </div>
+    </div>
+  `;
+  modalRightContianer.appendChild(modalCardDiv);
+
+  // Modal Left Container
+};
+
+function findElem(elem) {
+  // console.log(elem);
+  const str = elem.input + "\n" + elem.output;
+  console.log(str);
+  return str;
+}
 
 loadData();
