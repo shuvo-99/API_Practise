@@ -71,7 +71,8 @@ const displayToolsDetails = (toolDetail) => {
       }" class="card-img-top rounded" alt="...">
       <div class="card-body">
         <p class="card-text">${findElem(
-          toolDetail.input_output_examples[Math.floor(Math.random() * 2)]
+          // toolDetail.input_output_examples[Math.floor(Math.random() * 2)]
+          toolDetail.input_output_examples.length
         )}</p>
         
       </div>
@@ -131,7 +132,7 @@ const displayToolsDetails = (toolDetail) => {
                 .map(
                   (item, i) => `
                 <li>${item}.</li>
-              `
+                `
                 )
                 .join("")}
           </ul>
@@ -143,11 +144,15 @@ const displayToolsDetails = (toolDetail) => {
   modalLeftContianer.appendChild(modalLeftCardDiv);
 };
 
-function findElem(elem) {
-  // console.log(elem);
-  const str = elem.input + "\n" + elem.output;
-  // console.log(str);
-  return str;
+// function findElem(elem) {
+//   // console.log(elem);
+//   const str = elem.input + "\n" + elem.output;
+//   // console.log(str);
+//   return str;
+// }
+
+function findElem(len) {
+  toolDetail.input_output_examples[Math.floor(Math.random() * len)];
 }
 
 loadData();
