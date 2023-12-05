@@ -1,12 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./Main_Header.css";
 
 const Main_Header = () => {
   return (
-    <div>
-      <a href="">Home</a>
-      <a href="/info">Info</a>
-      <a href="/app">App</a>
-    </div>
+    <nav className="navbar">
+      <Link to="/">Home</Link>
+      <Link to="/info">Info</Link>
+      <Link to="/app">App</Link>
+      <Link to="/friends">Friends</Link>
+    </nav>
   );
 };
 

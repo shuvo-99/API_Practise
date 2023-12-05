@@ -7,29 +7,63 @@ import About from "./components/About/About.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Home from "./components/Home/Home.jsx";
 import Info from "./components/Info/Info.jsx";
+import Friends from "./components/Friends/Friends.jsx";
+import FriendDetail from "./components/FriendDetail/FriendDetail.jsx";
+import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-  },
-  {
-    path: "/app",
-    element: <App></App>,
-  },
-  {
-    path: "/info",
-    element: <Info></Info>,
     children: [
       {
-        path: "/info/about",
-        element: <About></About>,
+        path: "/app",
+        element: <App></App>,
       },
       {
-        path: "/info/contact",
-        element: <Contact></Contact>,
+        path: "/friends",
+        element: <Friends></Friends>,
+        loader: () => fetch("https://jsonplaceholder.typicode.com/users"),
+      },
+      {
+        path: "/friends/:friendID",
+        element: <FriendDetail></FriendDetail>,
+        loader: ({ params }) =>
+          fetch(
+            `https://jsonplaceholder.typicode.com/users/${params.friendID}`
+          ),
+      },
+      {
+        path: "/info",
+        element: <Info></Info>,
+        children: [
+          {
+            path: "/info/about",
+            element: <About></About>,
+          },
+          {
+            path: "/info/contact",
+            element: <Contact></Contact>,
+          },
+          {
+            path: "*",
+            element: <ErrorPage></ErrorPage>,
+          },
+          {
+            path: "*",
+            element: <ErrorPage></ErrorPage>,
+          },
+        ],
+      },
+      {
+        path: "*",
+        element: <ErrorPage></ErrorPage>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
   },
 ]);
 
@@ -38,24 +72,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-// children: [
-// {
-//   path: "info",
-//   element: <Info></Info>,
-//   children: [
-//     {
-//       path: "info/about",
-//       element: <About></About>,
-//     },
-//     {
-//       path: "info/contact",
-//       element: <Contact></Contact>,
-//     },
-//   ],
-// },
-// {
-//   path: "app",
-//   element: <App></App>,
-// },
-// ],
